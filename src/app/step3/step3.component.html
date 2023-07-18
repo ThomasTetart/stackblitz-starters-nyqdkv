@@ -1,0 +1,17 @@
+<app-header [title]="'Step3'"></app-header>
+<div class="row">
+  <form [formGroup]="formQuiz" (ngSubmit)="createQuiz()">
+    <app-drop-down [title]="'Select category'" [entries$]="categories$" (newValChange)="onSelectCategory($event)"></app-drop-down>
+    <app-drop-down [title]="'Select sub-category'" [entries$]="subCategories$" [(newVal)]="idCategory"></app-drop-down>
+    <select id="difficultySelect" formControlName="selectDifficulty">
+      <option [value]="null" disabled>Select difficulty</option>
+      <option>Easy</option>
+      <option>Medium</option>
+      <option>Hard</option>
+    </select>
+    <button type="submit" class="primary" id="createBtn" [disabled]="formQuiz.invalid || idCategory === null">Create</button>
+  </form>
+</div>
+<div class="row">
+  <app-quiz-step3 [questions]="questions$ | async" [(isResetQuestion)]="isResetQuestion" [currentCategory]="idCategory"></app-quiz-step3>
+</div>

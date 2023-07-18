@@ -1,0 +1,16 @@
+<div class="dropdown" [ngClass]="{'notVisible':nbEntries===0}">
+  <input type="text" class="dropbtn" [formControl]="formControlInput" placeholder="{{title}}" (click)="start()"/>
+  <div class="dropdown-content" >
+    <div *ngIf="filteredEntries$ | async as filteredEntries">
+     <span *ngFor="let entry of filteredEntries" (click)="updateValue(entry)"
+           [innerHTML]="entry.name | displayCate | highLight: formControlInput.value">
+    </span>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
